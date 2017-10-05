@@ -13,6 +13,7 @@ order = [
     :Chebyshev,
     :Minkowski,
     :Hamming,
+    :Angular,
     :CosineDist,
     :CorrDist,
     :ChiSqDist,

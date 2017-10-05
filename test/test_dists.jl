@@ -47,6 +47,7 @@ end
         test_metricity(Cityblock(), x, y, z)
         test_metricity(Chebyshev(), x, y, z)
         test_metricity(Minkowski(2.5), x, y, z)
+        test_metricity(Angular(), x, y, z)
 
         test_metricity(CosineDist(), x, y, z)
         test_metricity(CorrDist(), x, y, z)
@@ -58,7 +59,7 @@ end
 
         test_metricity(BhattacharyyaDist(), x, y, z)
         test_metricity(HellingerDist(), x, y, z)
-    
+
         k = rand(1:3, n)
         l = rand(1:3, n)
         m = rand(1:3, n)
@@ -115,6 +116,7 @@ end
     @test chebyshev(a, b) == 1.0
     @test minkowski(a, b, 2) == 1.0
     @test hamming(a, b) == 1
+    @test angular(a, b) == 0
 
     bt = [true, false, true]
     bf = [false, true, true]
@@ -154,7 +156,7 @@ end
             @test wcityblock(x, y, w) ≈ dot(abs.(x - vec(y)), w)
             @test wminkowski(x, y, w, 2) ≈ weuclidean(x, y, w)
         end
- 
+
 
         # Test weighted Hamming distances with even weights
         a = T.([1.0, 2.0, 1.0, 3.0, 2.0, 1.0])
@@ -187,7 +189,7 @@ end
         end
         @test kl_divergence(p, q) ≈ klv
         @test typeof(kl_divergence(p, q)) == T
-   
+
 
         @test renyi_divergence(p, r, 0) ≈ -log(scale)
         @test renyi_divergence(p, r, 1) ≈ -log(scale)

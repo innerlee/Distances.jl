@@ -24,6 +24,7 @@ export
     Minkowski,
     Jaccard,
     RogersTanimoto,
+    Angular,
 
     Hamming,
     CosineDist,
@@ -58,6 +59,7 @@ export
     rogerstanimoto,
     chebyshev,
     minkowski,
+    angular,
 
     hamming,
     cosine_dist,

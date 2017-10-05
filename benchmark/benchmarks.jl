@@ -11,6 +11,7 @@ function create_distances(w, Q)
         Chebyshev(),
         Minkowski(3.0),
         Hamming(),
+        Angular(),
 
         CosineDist(),
         CorrDist(),
@@ -57,7 +58,7 @@ function evaluate_colwise(dist, x, y)
 end
 
 function add_colwise_benchmarks!(SUITE)
-    
+
     m = 200
     n = 10000
 

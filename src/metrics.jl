@@ -22,6 +22,7 @@ struct Minkowski{T <: Real} <: Metric
 end
 
 struct Hamming <: Metric end
+struct Angular <: Metric end
 
 struct CosineDist <: SemiMetric end
 struct CorrDist <: SemiMetric end
@@ -215,6 +216,12 @@ minkowski(a::T, b::T, p::Real) where {T <: Number} = evaluate(Minkowski(p), a, b
 @inline eval_reduce(::Hamming, s1, s2) = s1 + s2
 hamming(a::AbstractArray, b::AbstractArray) = evaluate(Hamming(), a, b)
 hamming(a::T, b::T) where {T <: Number} = evaluate(Hamming(), a, b)
+
+# Angular
+evaluate(dist::Angular, a::AbstractArray, b::AbstractArray) = acos(1 - evaluate(CosineDist(), a, b)) / pi
+evaluate(dist::Angular, a::T, b::T) where {T <: Number} = acos(1 - evaluate(CosineDist(), a, b)) / pi
+angular(a::AbstractArray, b::AbstractArray) = evaluate(Angular(), a, b)
+angular(a::Number, b::Number) = evaluate(Angular(), a, b)
 
 # Cosine dist
 function eval_start(::CosineDist, a::AbstractArray{T}, b::AbstractArray{T}) where {T <: Real}
